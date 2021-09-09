@@ -1,0 +1,45 @@
+<head>
+
+    <meta charset="utf-8">
+    <meta name="description" content="Multiple peer connections">
+    <meta name="viewport" content="width=device-width, user-scalable=yes, initial-scale=1, maximum-scale=1">
+    <meta id="theme-color" name="theme-color" content="#ffffff">
+
+    <base target="_blank">
+
+    <title>Multiple peer connections</title>
+
+    <link rel="stylesheet" href="css/main.css"/>
+
+</head>
+
+<body>
+
+<div id="container">
+
+    <h1><a href="//webrtc.github.io/samples/" title="WebRTC samples homepage">WebRTC samples</a> <span>Multiple peer connections</span>
+    </h1>
+    <div id="videos">
+        <video id="video1" playsinline autoplay muted></video>
+        <video id="video2" playsinline autoplay></video>
+    </div>
+    <div>
+        <button id="startButton">Start</button>
+        <button id="callButton">Call</button>
+        <button id="hangupButton">Hang Up</button>
+    </div>
+
+    <p>View the console to see logging and to inspect the <code>MediaStream</code> object <code>localStream</code>.</p>
+
+    <p>For more information about RTCPeerConnection, see <a href="http://www.html5rocks.com/en/tutorials/webrtc/basics/"
+                                                            title="HTML5 Rocks article about WebRTC by Sam Dutton">Getting
+        Started With WebRTC</a>.</p>
+
+</div>
+
+<script src="https://webrtc.github.io/adapter/adapter-latest.js"></script>
+<script src="js/main.js" async></script>
+
+
+</body>
+</html>

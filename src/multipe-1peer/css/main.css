@@ -1,0 +1,150 @@
+  body {
+    margin: 0;
+    padding: 1em;
+    word-break: break-word;
+  }
+  
+  button {
+    background-color: #d84a38;
+    border: none;
+    border-radius: 2px;
+    color: white;
+    font-family: 'Roboto', sans-serif;
+    font-size: 0.8em;
+    margin: 0 0 1em 0;
+    padding: 0.5em 0.7em 0.6em 0.7em;
+  }
+  
+  button:active {
+    background-color: #cf402f;
+  }
+  
+  button:hover {
+    background-color: #cf402f;
+  }
+  
+  button[disabled] {
+    color: #ccc;
+  }
+  
+  button[disabled]:hover {
+    background-color: #d84a38;
+  }
+  
+  div#container {
+    margin: 0 auto 0 auto;
+    max-width: 60em;
+    padding: 1em 1.5em 1.3em 1.5em;
+  }
+
+  
+  h1 {
+    border-bottom: 1px solid #ccc;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 500;
+    margin: 0 0 0.8em 0;
+    padding: 0 0 0.2em 0;
+  }
+  
+  section {
+    border-bottom: 1px solid #eee;
+    margin: 0 0 30px 0;
+    padding: 0 0 20px 0;
+  }
+  
+  section:last-of-type {
+    border-bottom: none;
+    padding: 0 0 1em 0;
+  }
+  
+  h1 span {
+    white-space: nowrap;
+  }
+  
+  a {
+    color: #1D6EEE;
+    font-weight: 300;
+    text-decoration: none;
+  }
+  
+  h1 a {
+    font-weight: 300;
+    margin: 0 10px 0 0;
+    white-space: nowrap;
+  }
+  
+  a:hover {
+    color: #3d85c6;
+    text-decoration: underline;
+  }
+
+  p.description {
+    margin: 0 0 0.5em 0;
+  }
+  
+  strong {
+    font-weight: 500;
+  }
+  
+  ul {
+    margin: 0 0 0.5em 0;
+  }
+  
+  @media screen and (max-width: 650px) {
+    h1 {
+      font-size: 24px;
+    }
+  }
+  
+  @media screen and (max-width: 550px) {
+    button:active {
+      background-color: darkRed;
+    }
+  
+    h1 {
+      font-size: 22px;
+    }
+  }
+  
+  @media screen and (max-width: 450px) {
+    h1 {
+      font-size: 20px;
+    }
+  }
+
+ button {
+    margin: 0 20px 0 0;
+    width: 83px;
+  }
+  
+  button#hangupButton {
+      margin: 0;
+  }
+
+  video {
+    margin: 0 0 20px 0;
+  --width: 40%;
+    width: var(--width);
+    height: calc(var(--width) * 0.5625);
+    background: #222;
+  }
+
+  video#video1 {
+    margin: 0 20px 20px 0;
+  }
+
+  @media screen and (max-width: 400px) {
+    button {
+      margin: 0 11px 10px 0;
+    }
+
+    video {
+      height: 90px;
+      margin: 0 0 10px 0;
+      width: calc(50% - 8px);
+    }
+  
+    video#video1 {
+      margin: 0 10px 10px 0;
+    }
+  }

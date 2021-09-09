@@ -19,12 +19,10 @@ hangupButton.onclick = hangup;
 
 const video1 = document.querySelector('video#video1');
 const video2 = document.querySelector('video#video2');
-const video3 = document.querySelector('video#video3');
 
 let pc1Local;
 let pc1Remote;
-let pc2Local;
-let pc2Remote;
+
 const offerOptions = {
   offerToReceiveAudio: 1,
   offerToReceiveVideo: 1
@@ -71,17 +69,8 @@ function call() {
   pc1Remote.onicecandidate = iceCallback1Remote;
   console.log('pc1: created local and remote peer connection objects');
 
-  pc2Local = new RTCPeerConnection(servers);
-  pc2Remote = new RTCPeerConnection(servers);
-  pc2Remote.ontrack = gotRemoteStream2;
-  pc2Local.onicecandidate = iceCallback2Local;
-  pc2Remote.onicecandidate = iceCallback2Remote;
-  console.log('pc2: created local and remote peer connection objects');
-
   window.localStream.getTracks().forEach(track => pc1Local.addTrack(track, window.localStream));
   console.log('Adding local stream to pc1Local');
-  window.localStream.getTracks().forEach(track => pc2Local.addTrack(track, window.localStream));
-  console.log('Adding local stream to pc2Local');
 
   const {codecs} = RTCRtpSender.getCapabilities('video');
   const codecIndex = codecs.findIndex(c => c.mimeType === "video/H264" && c.sdpFmtpLine.includes("packetization-mode=0"));
@@ -97,19 +86,13 @@ function call() {
     codecs.unshift(selectedCodec);
     const transceiver1 = pc1Local.getTransceivers().find(t => t.sender && t.sender.track === localStream.getVideoTracks()[0]);
     transceiver1.setCodecPreferences(codecs);
-    const transceiver2 = pc2Local.getTransceivers().find(t => t.sender && t.sender.track === localStream.getVideoTracks()[0]);
-    transceiver2.setCodecPreferences(codecs);
 
     console.log('setting codec to h264',transceiver1)
   }
 
-
   pc1Local
       .createOffer(offerOptions)
       .then(gotDescription1Local, onCreateSessionDescriptionError);
-
-  pc2Local.createOffer(offerOptions)
-      .then(gotDescription2Local, onCreateSessionDescriptionError);
 }
 
 function onCreateSessionDescriptionError(error) {
@@ -132,30 +115,10 @@ function gotDescription1Remote(desc) {
   pc1Local.setRemoteDescription(desc);
 }
 
-function gotDescription2Local(desc) {
-  pc2Local.setLocalDescription(desc);
-  console.log(`Offer from pc2Local\n${desc.sdp}`);
-  pc2Remote.setRemoteDescription(desc);
-  // Since the 'remote' side has no media stream we need
-  // to pass in the right constraints in order for it to
-  // accept the incoming offer of audio and video.
-  pc2Remote.createAnswer().then(gotDescription2Remote, onCreateSessionDescriptionError);
-}
-
-function gotDescription2Remote(desc) {
-  pc2Remote.setLocalDescription(desc);
-  console.log(`Answer from pc2Remote\n${desc.sdp}`);
-  pc2Local.setRemoteDescription(desc);
-}
-
 function hangup() {
   console.log('Ending calls');
   pc1Local.close();
   pc1Remote.close();
-  pc2Local.close();
-  pc2Remote.close();
-  pc1Local = pc1Remote = null;
-  pc2Local = pc2Remote = null;
   hangupButton.disabled = true;
   callButton.disabled = false;
 }
@@ -167,12 +130,6 @@ function gotRemoteStream1(e) {
   }
 }
 
-function gotRemoteStream2(e) {
-  if (video3.srcObject !== e.streams[0]) {
-    video3.srcObject = e.streams[0];
-    console.log('pc2: received remote stream');
-  }
-}
 
 function iceCallback1Local(event) {
   handleCandidate(event.candidate, pc1Remote, 'pc1: ', 'local');
@@ -180,14 +137,6 @@ function iceCallback1Local(event) {
 
 function iceCallback1Remote(event) {
   handleCandidate(event.candidate, pc1Local, 'pc1: ', 'remote');
-}
-
-function iceCallback2Local(event) {
-  handleCandidate(event.candidate, pc2Remote, 'pc2: ', 'local');
-}
-
-function iceCallback2Remote(event) {
-  handleCandidate(event.candidate, pc2Local, 'pc2: ', 'remote');
 }
 
 function handleCandidate(candidate, dest, prefix, type) {

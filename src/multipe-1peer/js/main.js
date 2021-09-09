@@ -32,6 +32,7 @@ const offerOptions = {
 function gotStream(stream) {
   console.log('Received local stream');
   video1.srcObject = stream;
+  video1.style.background = "none";
   window.localStream = stream;
   callButton.disabled = false;
 }
@@ -126,6 +127,7 @@ function hangup() {
 function gotRemoteStream1(e) {
   if (video2.srcObject !== e.streams[0]) {
     video2.srcObject = e.streams[0];
+    video2.style.background = "none";
     console.log('pc1: received remote stream');
   }
 }

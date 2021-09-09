@@ -37,6 +37,7 @@ const offerOptions = {
 function gotStream(stream) {
   console.log('Received local stream');
   video1.srcObject = stream;
+  video1.style.background = "none";
   window.localStream = stream;
   callButton.disabled = false;
 }
@@ -199,6 +200,7 @@ function hangup() {
 function gotRemoteStream1(e) {
   if (video2.srcObject !== e.streams[0]) {
     video2.srcObject = e.streams[0];
+    video2.style.background = "none";
     console.log('pc1: received remote stream');
   }
 }
@@ -206,6 +208,7 @@ function gotRemoteStream1(e) {
 function gotRemoteStream2(e) {
   if (video3.srcObject !== e.streams[0]) {
     video3.srcObject = e.streams[0];
+    video3.style.background = "none";
     console.log('pc2: received remote stream');
   }
 }
@@ -213,6 +216,7 @@ function gotRemoteStream2(e) {
 function gotRemoteStream3(e) {
   if (video4.srcObject !== e.streams[0]) {
     video4.srcObject = e.streams[0];
+    video4.style.background = "none";
     console.log('pc3: received remote stream');
   }
 }

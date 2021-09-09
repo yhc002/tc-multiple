@@ -44,7 +44,7 @@ function start() {
   navigator.mediaDevices
       .getUserMedia({
         audio: true,
-        video: {width: {exact: 1280}, height: {exact: 720}}//{width: {exact: 1280}, height: {exact: 720}}
+        video: {width: {exact: 1280}, height: {exact: 720}}
       })
       .then(gotStream)
       .catch(e => console.log('getUserMedia() error: ', e));

@@ -1,20 +1,8 @@
-<!DOCTYPE html>
-<!--
- *  Copyright (c) 2015 The WebRTC project authors. All Rights Reserved.
- *
- *  Use of this source code is governed by a BSD-style license
- *  that can be found in the LICENSE file in the root of the source
- *  tree.
--->
-<html>
 <head>
 
     <meta charset="utf-8">
-    <meta name="description" content="WebRTC code samples">
+    <meta name="description" content="Multiple peer connections">
     <meta name="viewport" content="width=device-width, user-scalable=yes, initial-scale=1, maximum-scale=1">
-    <meta itemprop="description" content="Client-side WebRTC code samples">
-    <meta itemprop="name" content="WebRTC code samples">
-    <meta name="mobile-web-app-capable" content="yes">
     <meta id="theme-color" name="theme-color" content="#ffffff">
 
     <base target="_blank">
@@ -32,21 +20,9 @@
     <h1><a href="//webrtc.github.io/samples/" title="WebRTC samples homepage">WebRTC samples</a> <span>Multiple peer connections</span>
     </h1>
     <div id="videos">
-        <div class="video-row">
-            <div class="video-container">
-                <video id="video1" playsinline autoplay muted></video>
-            </div>
-            <div class="video-container" >
-                <video id="video2" playsinline autoplay></video>
-            </div>
-        </div>
-        <div class="video-row">
-            <div class="video-container" >
-                <video id="video3" playsinline autoplay></video>
-            </div>
-            <div class="video-container" id="placeholder" >
-            </div>
-        </div>
+        <video id="video1" playsinline autoplay muted></video>
+        <video id="video2" playsinline autoplay></video>
+        <video id="video3" playsinline autoplay></video>
     </div>
     <div>
         <button id="startButton">Start</button>
